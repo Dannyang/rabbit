@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "../../../../../mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.rabbit.mapper.InviteMapper">
+    <resultMap id="inviteMap" type="com.example.rabbit.entity.Invite">
+        <result property="id" column="id"/>
+        <result property="ding" column="ding"/>
+        <result property="template" column="template"/>
+        <result property="code" column="code"/>
+        <result property="title" column="title"/>
+        <result property="titleColor" column="titleColor"/>
+        <result property="titleBold" column="titleBold"/>
+        <result property="titleItalic" column="titleItalic"/>
+        <result property="titleUnderline" column="titleUnderline"/>
+        <result property="recommend" column="recommend"/>
+        <result property="invitation" column="invitation"/>
+        <result property="quality" column="quality"/>
+        <result property="fuxing" column="fuxing"/>
+        <result property="subTitle" column="subTitle"/>
+        <result property="source" column="source"/>
+        <result property="catelog" column="catelog"/>
+        <result property="industry" column="industry"/>
+        <result property="segment" column="segment"/>
+        <result property="blockingTime" column="blockingTime"/>
+        <result property="country" column="country"/>
+        <result property="state" column="state"/>
+        <result property="city" column="city"/>
+        <result property="area" column="area"/>
+        <result property="biddingOwner" column="biddingOwner"/>
+        <result property="biddingBrief" column="biddingBrief"/>
+        <result property="linkman" column="linkman"/>
+        <result property="contactWay" column="contactWay"/>
+        <result property="biddingProxyOwner" column="biddingProxyOwner"/>
+        <result property="proxyLinkman" column="proxyLinkman"/>
+        <result property="proxyContactWay" column="proxyContactWay"/>
+        <result property="customerServicePhone" column="customerServicePhone"/>
+        <result property="openingTime" column="openingTime"/>
+        <result property="openingAddress" column="openingAddress"/>
+        <result property="name" column="name"/>
+        <result property="address" column="address"/>
+        <result property="duration" column="duration"/>
+        <result property="funds" column="funds"/>
+        <result property="designBuild" column="designBuild"/>
+        <result property="requirements" column="requirements"/>
+        <result property="policy" column="policy"/>
+        <result property="preliminary" column="preliminary"/>
+        <result property="getFile" column="getFile"/>
+        <result property="toFile" column="toFile"/>
+        <result property="regTime" column="regTime"/>
+        <result property="regAddress" column="regAddress"/>
+        <result property="acquire" column="acquire"/>
+        <result property="viewTime" column="viewTime"/>
+        <result property="status" column="status"/>
+        <result property="creatorId" column="creatorId"/>
+        <result property="createTime" column="createTime"/>
+        <result property="lastAccess" column="lastAccess"/>
+        <result property="collectTime" column="collectTime"/>
+        <result property="collectSource" column="collectSource"/>
+        <result property="collectLink" column="collectLink"/>
+        <result property="basisKeyword" column="basisKeyword"/>
+        <result property="biddingOwnerColor" column="biddingOwnerColor"/>
+        <result property="biddingOwnerBold" column="biddingOwnerBold"/>
+        <result property="dataType" column="dataType"/>
+        <result property="inviteNum" column="inviteNum"/>
+        <result property="bid" column="bid"/>
+        <result property="old" column="old"/>
+        <association property="brief" select="com.bnjz.bid.dao.InviteDao.findBriefByInviteId" column="id"/>
+        <association property="qualifications" select="com.bnjz.bid.dao.InviteDao.findQualificationsByInviteId"
+                     column="id"/>
+        <association property="registration" select="com.bnjz.bid.dao.InviteDao.findRegistrationByInviteId"
+                     column="id"/>
+        <association property="note" select="com.bnjz.bid.dao.InviteDao.findNoteByInviteId" column="id"/>
+    </resultMap>
+
+    <sql id="All_Column">
+        id, ding, template, code, title, titleColor, titleBold, titleItalic,
+        titleUnderline, recommend, fuxing, invitation, quality, subTitle,
+        source, catalog, industry, segment, blockingTime, country, state, city,
+        area, biddingOwner, linkman, contactWay, biddingProxyOwner, proxyLinkman,
+        biddingBrief, proxyContactWay, customerServicePhone, openingTime,
+        openingAddress, name, address, duration, funds, siteArea, designBuild,
+        requirements, policy, preliminary, getFile, toFile, regTime, regAddress, acquire,
+        viewTime, status, creatorId, createTime, lastAccess, collectTime,
+        collectSource, collectLink, basisKeyword,
+        biddingOwnerColor, biddingOwnerBold, dataType
+    </sql>
+
+    <select id="getAllInvites" resultMap="inviteMap">
+        select id, ding, template, code, title, titleColor, titleBold, titleItalic,
+        titleUnderline, recommend, fuxing, invitation, quality, subTitle,
+        source, catalog, industry, segment, blockingTime, country, state, city,
+        area, biddingOwner, linkman, contactWay, biddingProxyOwner, proxyLinkman,
+        biddingBrief, proxyContactWay, customerServicePhone, openingTime,
+        openingAddress, name, address, duration, funds, siteArea, designBuild,
+        requirements, policy, preliminary, getFile, toFile, regTime, regAddress, acquire,
+        viewTime, status, creatorId, createTime, lastAccess, collectTime,
+        collectSource, collectLink, basisKeyword,
+        biddingOwnerColor, biddingOwnerBold, dataType from bid_invite
+    </select>
+
+</mapper>

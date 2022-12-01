@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "../../../../../mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.rabbit.mapper.FeatureMapper">
+    <resultMap id="resultMap" type="com.example.rabbit.entity.NotificationDetail">
+        <result property="id" column="id"/>
+        <result property="authorityInformation" column="authority_info" javaType="com.example.rabbit.entity.AuthorityInformation"
+                typeHandler="com.example.rabbit.handler.BatisHandler"/>
+        <result property="basicInformation" column="basic_info" javaType="com.example.rabbit.entity.BasicInformation"
+                typeHandler="com.example.rabbit.handler.BatisHandler"/>
+        <result property="behaviorCharacteristics" column="behavior_feature" javaType="com.example.rabbit.entity.BehaviorCharacteristics"
+                typeHandler="com.example.rabbit.handler.BatisHandler"/>
+        <result property="interestAndPreference" column="interest_feature" javaType="com.example.rabbit.entity.InterestAndPreference"
+                typeHandler="com.example.rabbit.handler.BatisHandler"/>
+        <result property="mentalFeature" column="mental_feature" javaType="com.example.rabbit.entity.MentalFeature"
+                typeHandler="com.example.rabbit.handler.BatisHandler"/>
+        <result property="userCustomization" column="user_customization" javaType="com.example.rabbit.entity.UserCustomization"
+                typeHandler="com.example.rabbit.handler.BatisHandler"/>
+        <result property="registryInformation" column="registration_info" javaType="com.example.rabbit.entity.RegistryInformation"
+                typeHandler="com.example.rabbit.handler.BatisHandler"/>
+        <result property="consumptionCharacteristics" column="consumption_feature"  javaType="com.example.rabbit.entity.ConsumptionCharacteristics"
+                typeHandler="com.example.rabbit.handler.BatisHandler"/>
+    </resultMap>
+
+    <insert id="saveFeature">
+        insert into
+        acitivity_push_tag(behavior_feature,consumption_feature,interest_feature,mental_feature,basic_info,registration_info,authority_info,user_customization)
+        values
+        (#{behaviorCharacteristics, jdbcType=UNDEFINED,typeHandler=com.example.rabbit.handler.BatisHandler},
+        #{consumptionCharacteristics, jdbcType=UNDEFINED,typeHandler=com.example.rabbit.handler.BatisHandler},
+        #{interestAndPreference, jdbcType=UNDEFINED,typeHandler=com.example.rabbit.handler.BatisHandler},
+        #{mentalFeature, jdbcType=UNDEFINED,typeHandler=com.example.rabbit.handler.BatisHandler},
+        #{basicInformation, jdbcType=UNDEFINED,typeHandler=com.example.rabbit.handler.BatisHandler},
+        #{authorityInformation, jdbcType=UNDEFINED,typeHandler=com.example.rabbit.handler.BatisHandler},
+        #{userCustomization, jdbcType=UNDEFINED,typeHandler=com.example.rabbit.handler.BatisHandler},
+        #{registryInformation, jdbcType=UNDEFINED,typeHandler=com.example.rabbit.handler.BatisHandler})
+    </insert>
+    <select id="getAll" resultMap="resultMap">
+        select id,
+        behavior_feature,consumption_feature,interest_feature,mental_feature,basic_info,registration_info,authority_info,user_customization
+        from
+        acitivity_push_tag
+    </select>
+</mapper>

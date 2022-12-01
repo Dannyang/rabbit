@@ -1,0 +1,33 @@
+logging:
+  level:
+    root: info
+
+
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  #  redis:
+#    cluster:
+#      nodes: redis01.mysteel.local:7001,redis02.mysteel.local:7002,redis03.mysteel.local:7003,redis04.mysteel.local:7004,redis05.mysteel.local:7005,redis06.mysteel.local:7006
+#    password: nm6LkFlFmmY6
+  rabbitmq:
+    host: localhost
+    username: guest
+    password: guest
+    virtual-host: /mysteel
+    port: 5672
+  datasource:
+    password: root
+    username: root
+    url: jdbc:mysql://localhost:3306/my_local?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&serverTimezone=GMT
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 9999
+
+
+sensitive:
+  words: "加班,再加班"
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
