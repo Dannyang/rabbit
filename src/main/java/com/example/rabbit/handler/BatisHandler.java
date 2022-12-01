@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class BatisHandler<T> extends BaseTypeHandler<T> {
-    private Class<T> clazz;
+    private final Class<T> clazz;
 
     public BatisHandler(Class<T> clazz) {
         if (clazz == null) throw new IllegalArgumentException("Type argument cannot be null");

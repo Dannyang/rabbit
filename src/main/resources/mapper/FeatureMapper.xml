@@ -24,16 +24,24 @@
 
     <insert id="saveFeature">
         insert into
-        acitivity_push_tag(behavior_feature,consumption_feature,interest_feature,mental_feature,basic_info,registration_info,authority_info,user_customization)
+        acitivity_push_tag(
+        behavior_feature,
+        consumption_feature,
+        interest_feature,
+        mental_feature,
+        basic_info,
+        registration_info,
+        authority_info,
+        user_customization)
         values
         (#{behaviorCharacteristics, jdbcType=UNDEFINED,typeHandler=com.example.rabbit.handler.BatisHandler},
         #{consumptionCharacteristics, jdbcType=UNDEFINED,typeHandler=com.example.rabbit.handler.BatisHandler},
         #{interestAndPreference, jdbcType=UNDEFINED,typeHandler=com.example.rabbit.handler.BatisHandler},
         #{mentalFeature, jdbcType=UNDEFINED,typeHandler=com.example.rabbit.handler.BatisHandler},
         #{basicInformation, jdbcType=UNDEFINED,typeHandler=com.example.rabbit.handler.BatisHandler},
+        #{registryInformation, jdbcType=UNDEFINED,typeHandler=com.example.rabbit.handler.BatisHandler},
         #{authorityInformation, jdbcType=UNDEFINED,typeHandler=com.example.rabbit.handler.BatisHandler},
-        #{userCustomization, jdbcType=UNDEFINED,typeHandler=com.example.rabbit.handler.BatisHandler},
-        #{registryInformation, jdbcType=UNDEFINED,typeHandler=com.example.rabbit.handler.BatisHandler})
+        #{userCustomization, jdbcType=UNDEFINED,typeHandler=com.example.rabbit.handler.BatisHandler})
     </insert>
     <select id="getAll" resultMap="resultMap">
         select id,
