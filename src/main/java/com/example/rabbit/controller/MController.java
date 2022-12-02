@@ -4,6 +4,7 @@ package com.example.rabbit.controller;
 import com.example.rabbit.consumer.MyProducer;
 import com.example.rabbit.entity.Entity;
 import com.example.rabbit.entity.NotificationDetail;
+import com.example.rabbit.entity.ProductReq;
 import com.example.rabbit.entity.ProductRsp;
 import com.example.rabbit.service.InviteService;
 import com.example.rabbit.service.ProductService;
@@ -100,5 +101,11 @@ public class MController {
     @RequestMapping(value = "/t6", method = RequestMethod.GET)
     public List<ProductRsp> t6() {
         return productService.productTree();
+    }
+
+
+    @RequestMapping(value = "/t7", method = RequestMethod.GET)
+    public ProductReq t7(String leafUuid) {
+        return productService.getRootProduct(leafUuid);
     }
 }

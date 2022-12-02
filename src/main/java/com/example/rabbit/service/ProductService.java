@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,6 +40,25 @@ public class ProductService {
     }
 
 
+    public ProductReq getRootProduct(String leafUuid) {
+        List<ProductReq> productMapperAll = productMapper.getAll();
+        ProductReq theProduct = productMapperAll.stream()
+                .filter(product -> leafUuid.equals(product.getUuid()))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("cannot find the product"));
+        return findTheRoot(productMapperAll, theProduct);
+    }
+
+    private static ProductReq findTheRoot(List<ProductReq> all, ProductReq child) {
+        Optional<ProductReq> productReq = all.stream().filter(parent -> child.getParentUuid().equals(parent.getUuid())).findFirst();
+        // 如果已经不能再往上找到则当前节点为根节点
+        if (!productReq.isPresent()) {
+            return child;
+        }
+        // 如果存在再接着往上找知道找不到父节点为止
+        return findTheRoot(all, productReq.get());
+    }
+
     /**
      * 1.筛选出根节点
      *
@@ -46,7 +66,7 @@ public class ProductService {
      * @param parentUuid
      * @return
      */
-    public static List<ProductRsp> buildTree(List<ProductRsp> all, String parentUuid) {
+    private static List<ProductRsp> buildTree(List<ProductRsp> all, String parentUuid) {
         if (CollectionUtils.isEmpty(all))
             return Lists.newArrayList();
 
