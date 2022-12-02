@@ -32,3 +32,9 @@ INSERT INTO `product`
 VALUES ('5', '19eedcd3-aa7f-4a2d-8182-d3f795e99b9d', '44', '1', '34c5239f-db2d-4394-b367-a57f8ae6f8ff', '4',
         '2021-09-23 15:53:56');
 
+INSERT INTO `product` (`id`, `uuid`, `name`, `sort`, `parent_uuid`, `level`, `create_time`)
+VALUES (6, 'uuid_1', '测试类_1', 1, '-1', '1', '2022-12-02 16:01:18');
+INSERT INTO `product` (`id`, `uuid`, `name`, `sort`, `parent_uuid`, `level`, `create_time`)
+VALUES (7, 'uuid_2', '测试类_2', 1, 'uuid_1', '2', '2022-12-02 16:01:58');
+INSERT INTO `product` (`id`, `uuid`, `name`, `sort`, `parent_uuid`, `level`, `create_time`)
+VALUES (8, 'uuid_3', '测试类_3', 2, 'uuid_1', '2', '2022-12-02 16:03:01');
