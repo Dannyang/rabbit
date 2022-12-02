@@ -1,6 +1,7 @@
 logging:
   level:
     root: info
+    com.example.rabbit.mapper: debug
 
 
 spring:
@@ -8,9 +9,9 @@ spring:
     host: 127.0.0.1
     port: 6379
   #  redis:
-#    cluster:
-#      nodes: redis01.mysteel.local:7001,redis02.mysteel.local:7002,redis03.mysteel.local:7003,redis04.mysteel.local:7004,redis05.mysteel.local:7005,redis06.mysteel.local:7006
-#    password: nm6LkFlFmmY6
+  #    cluster:
+  #      nodes: redis01.mysteel.local:7001,redis02.mysteel.local:7002,redis03.mysteel.local:7003,redis04.mysteel.local:7004,redis05.mysteel.local:7005,redis06.mysteel.local:7006
+  #    password: nm6LkFlFmmY6
   rabbitmq:
     host: localhost
     username: guest

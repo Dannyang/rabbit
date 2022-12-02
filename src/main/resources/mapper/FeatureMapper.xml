@@ -4,21 +4,27 @@
 <mapper namespace="com.example.rabbit.mapper.FeatureMapper">
     <resultMap id="resultMap" type="com.example.rabbit.entity.NotificationDetail">
         <result property="id" column="id"/>
-        <result property="authorityInformation" column="authority_info" javaType="com.example.rabbit.entity.AuthorityInformation"
+        <result property="authorityInformation" column="authority_info"
+                javaType="com.example.rabbit.entity.AuthorityInformation"
                 typeHandler="com.example.rabbit.handler.BatisHandler"/>
         <result property="basicInformation" column="basic_info" javaType="com.example.rabbit.entity.BasicInformation"
                 typeHandler="com.example.rabbit.handler.BatisHandler"/>
-        <result property="behaviorCharacteristics" column="behavior_feature" javaType="com.example.rabbit.entity.BehaviorCharacteristics"
+        <result property="behaviorCharacteristics" column="behavior_feature"
+                javaType="com.example.rabbit.entity.BehaviorCharacteristics"
                 typeHandler="com.example.rabbit.handler.BatisHandler"/>
-        <result property="interestAndPreference" column="interest_feature" javaType="com.example.rabbit.entity.InterestAndPreference"
+        <result property="interestAndPreference" column="interest_feature"
+                javaType="com.example.rabbit.entity.InterestAndPreference"
                 typeHandler="com.example.rabbit.handler.BatisHandler"/>
         <result property="mentalFeature" column="mental_feature" javaType="com.example.rabbit.entity.MentalFeature"
                 typeHandler="com.example.rabbit.handler.BatisHandler"/>
-        <result property="userCustomization" column="user_customization" javaType="com.example.rabbit.entity.UserCustomization"
+        <result property="userCustomization" column="user_customization"
+                javaType="com.example.rabbit.entity.UserCustomization"
                 typeHandler="com.example.rabbit.handler.BatisHandler"/>
-        <result property="registryInformation" column="registration_info" javaType="com.example.rabbit.entity.RegistryInformation"
+        <result property="registryInformation" column="registration_info"
+                javaType="com.example.rabbit.entity.RegistryInformation"
                 typeHandler="com.example.rabbit.handler.BatisHandler"/>
-        <result property="consumptionCharacteristics" column="consumption_feature"  javaType="com.example.rabbit.entity.ConsumptionCharacteristics"
+        <result property="consumptionCharacteristics" column="consumption_feature"
+                javaType="com.example.rabbit.entity.ConsumptionCharacteristics"
                 typeHandler="com.example.rabbit.handler.BatisHandler"/>
     </resultMap>
 
@@ -32,7 +38,8 @@
         basic_info,
         registration_info,
         authority_info,
-        user_customization)
+        user_customization
+        )
         values
         (#{behaviorCharacteristics, jdbcType=UNDEFINED,typeHandler=com.example.rabbit.handler.BatisHandler},
         #{consumptionCharacteristics, jdbcType=UNDEFINED,typeHandler=com.example.rabbit.handler.BatisHandler},

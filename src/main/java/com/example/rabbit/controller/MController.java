@@ -4,7 +4,9 @@ package com.example.rabbit.controller;
 import com.example.rabbit.consumer.MyProducer;
 import com.example.rabbit.entity.Entity;
 import com.example.rabbit.entity.NotificationDetail;
+import com.example.rabbit.entity.ProductRsp;
 import com.example.rabbit.service.InviteService;
+import com.example.rabbit.service.ProductService;
 import org.ahocorasick.trie.Emit;
 import org.ahocorasick.trie.Token;
 import org.ahocorasick.trie.Trie;
@@ -23,11 +25,13 @@ public class MController {
 
     private final Trie trie;
     private final InviteService inviteService;
+    private final ProductService productService;
 
-    public MController(MyProducer myProducer, Trie trie, InviteService inviteService) {
+    public MController(MyProducer myProducer, Trie trie, InviteService inviteService, ProductService productService) {
         this.myProducer = myProducer;
         this.trie = trie;
         this.inviteService = inviteService;
+        this.productService = productService;
     }
 
 //    @RequestMapping(value = "/send", method = RequestMethod.GET)
@@ -36,14 +40,13 @@ public class MController {
 //    }
 
     @RequestMapping(value = "/sen2", method = RequestMethod.POST)
-    public void send(@RequestBody Entity entity){
+    public void send(@RequestBody Entity entity) {
         myProducer.send(entity);
     }
 
 
-
     @RequestMapping(value = "/t1", method = RequestMethod.GET)
-    public String t1(){
+    public String t1() {
         String speech = "The Answer to the Great Question... Of Life, " +
                 "the Universe and Everything... Is... Forty-two,' said " +
                 "Deep Thought, with infinite majesty and calm.";
@@ -73,25 +76,29 @@ public class MController {
     }
 
     @RequestMapping(value = "/t2", method = RequestMethod.GET)
-    public List<String> t2(String sentence){
+    public List<String> t2(String sentence) {
         Collection<Emit> emits = trie.parseText(sentence);
         return emits.stream().map(Emit::getKeyword).collect(Collectors.toList());
     }
 
 
-
     @RequestMapping(value = "/t3", method = RequestMethod.GET)
-    public void t3(){
+    public void t3() {
         inviteService.test();
     }
 
     @RequestMapping(value = "/t4", method = RequestMethod.GET)
-    public void t4(){
+    public void t4() {
         inviteService.test2();
     }
 
     @RequestMapping(value = "/t5", method = RequestMethod.GET)
-    public List<NotificationDetail> t5(){
-       return  inviteService.test3();
+    public List<NotificationDetail> t5() {
+        return inviteService.test3();
+    }
+
+    @RequestMapping(value = "/t6", method = RequestMethod.GET)
+    public List<ProductRsp> t6() {
+        return productService.productTree();
     }
 }

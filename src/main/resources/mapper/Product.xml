@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "../../../../../mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.rabbit.mapper.ProductMapper">
+    <resultMap id="inviteMap" type="com.example.rabbit.entity.ProductReq">
+        <result property="id" column="id"/>
+        <result property="uuid" column="uuid"/>
+        <result property="name" column="name"/>
+        <result property="sort" column="sort"/>
+        <result property="parentUuid" column="parent_uuid"/>
+        <result property="level" column="level"/>
+    </resultMap>
+
+
+    <select id="getAll" resultMap="inviteMap">
+        select id,uuid,name,sort,parent_uuid,level from product
+    </select>
+
+</mapper>
