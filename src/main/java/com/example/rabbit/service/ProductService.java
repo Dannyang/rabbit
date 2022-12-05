@@ -87,7 +87,7 @@ public class ProductService {
         parentList.forEach(parent -> {
             List<ProductRsp> children = all.stream().filter(child -> child.getParentUuid().equals(parent.getUuid())).collect(Collectors.toList());
             parent.setSubList(children);
-            // 直到没有找到归属于父节点的列表为止
+            // 直到没有找到归属于下属节点的列表为止
             if (CollectionUtils.isNotEmpty(children)) {
                 getSubList(children, all);
             }
