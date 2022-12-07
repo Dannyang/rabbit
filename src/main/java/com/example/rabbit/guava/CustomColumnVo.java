@@ -23,5 +23,5 @@ public class CustomColumnVo {
     private Integer parentVarietyCode;
     List<ColumnVo> columnVos;
     @ApiModelProperty(value = "定制品树", name = "customVarietyVoList")
-    List<CustomColumnVo> customColumnVos;
+    List<CustomColumnVo> children;
 }
