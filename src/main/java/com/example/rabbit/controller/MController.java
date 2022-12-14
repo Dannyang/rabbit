@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -101,6 +102,11 @@ public class MController {
     @RequestMapping(value = "/t6", method = RequestMethod.GET)
     public List<ProductRsp> t6() {
         return productService.productTree();
+    }
+
+    @RequestMapping(value = "/t8", method = RequestMethod.POST)
+    public void t8(@RequestBody Map<String, Object> body) {
+        productService.batchInsert();
     }
 
 

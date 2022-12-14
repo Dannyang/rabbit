@@ -5,6 +5,8 @@ import com.example.rabbit.guava.Production;
 import com.google.common.collect.Lists;
 import com.google.common.io.Files;
 import org.apache.commons.lang3.StringUtils;
+import site.lizhivscaomei.libs.tree.entity.TreeDestNode;
+import site.lizhivscaomei.libs.tree.service.TreeHelper;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,8 +17,10 @@ import java.util.List;
 public class UtilTest {
     public static void main(String[] args) {
         List<Production> customVarietyVos = readFile(Production.class, "F:\\guava\\listAllPage.txt");
-        List<TreeDot<Production>> treeDots = TreeDotUtil.convertListToTreeDot(customVarietyVos);
-        System.out.println(treeDots.size());
+//        List<TreeDot<Production>> treeDots = TreeDotUtil.convertListToTreeDot(customVarietyVos);
+//
+        List<MyTreeDestNode<Production>> treeDestNodes = MyTreeHelper.convert(customVarietyVos);
+        System.out.println(treeDestNodes.size());
         UtilTest utilTest = new UtilTest();
         List<TreeDot<Node>> tree = utilTest.tree();
         System.out.println(tree.size());

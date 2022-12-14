@@ -16,4 +16,11 @@
         select id,uuid,name,sort,parent_uuid,level from product
     </select>
 
+    <select id="batchInsert" parameterType="list">
+        INSERT INTO product(uuid,name,sort,parent_uuid,level,create_time) values
+        <foreach collection="productReqList" item="item" separator=",">
+            (#{item.uuid},#{item.name},#{item.sort},#{item.parentUuid},#{item.level}, UTC_TIMESTAMP())
+        </foreach>
+    </select>
+
 </mapper>

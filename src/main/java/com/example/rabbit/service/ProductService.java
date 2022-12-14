@@ -7,21 +7,53 @@ import com.google.common.collect.Lists;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.session.ExecutorType;
+import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
     private final ProductMapper productMapper;
+    private final SqlSessionTemplate sqlSessionTemplate;
 
 
-    public ProductService(ProductMapper productMapper) {
+    public ProductService(ProductMapper productMapper, SqlSessionTemplate sqlSessionTemplate) {
         this.productMapper = productMapper;
+        this.sqlSessionTemplate = sqlSessionTemplate;
+    }
 
+    public void batchInsert() {
+        int i = 0;
+        List<ProductReq> list = Lists.newArrayList();
+        while (i < 3*1000*1000) {
+            String uuId = UUID.randomUUID().toString();
+            ProductReq productReq = new ProductReq();
+            productReq.setLevel("2");
+            productReq.setName("什么名字");
+            productReq.setUuid(uuId);
+            productReq.setParentUuid("4dbf40d2-2af7-425c-a103-0349caaa26cf");
+            productReq.setSort(2);
+            list.add(productReq);
+            i++;
+        }
+//        SqlSession sqlSession = sqlSessionTemplate.getSqlSessionFactory().openSession(ExecutorType.BATCH, false);
+        try {
+//            long t1 = System.currentTimeMillis();
+//            ProductMapper mapper = sqlSession.getMapper(ProductMapper.class);
+            List<List<ProductReq>> partition = Lists.partition(list, 10000);
+            for (List<ProductReq> reqList : partition) {
+                productMapper.batchInsert(reqList);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public List<ProductRsp> productTree() {

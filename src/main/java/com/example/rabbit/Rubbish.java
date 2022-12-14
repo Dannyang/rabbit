@@ -37,7 +37,7 @@ public class Rubbish {
     }
 
     public static void main(String[] args) {
-            String time1 = "2022-11-25 23:30:00";
+            String time1 = "2022-12-09 00:00:00";
 //        Long time2 = 1669600187869L;
         System.out.println("将时间转为时间戳："+dateToStamp(time1));
         System.out.println("将时间戳转为时间："+stampToDate(1669611600000L));
