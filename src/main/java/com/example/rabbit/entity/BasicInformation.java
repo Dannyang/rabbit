@@ -14,8 +14,10 @@ import java.util.List;
 @Builder
 // 基本信息
 public class BasicInformation {
-    // 所在地区
-    private List<String> userLocation = Lists.newArrayList("1","2","3");
+    // 所在地区城市
+    private List<String> userCity = Lists.newArrayList("深圳","东莞","广州");
+    // 所在地区省份
+    private List<String> userProvince = Lists.newArrayList("广东","江西","山东");;
     // 最后登录时间
     private Long lastLoginTimeStart = 1367121060000L;
     private Long lastLoginTimeEnd = 1367121109638L;

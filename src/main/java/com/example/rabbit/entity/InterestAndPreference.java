@@ -18,6 +18,8 @@ public class InterestAndPreference {
     private List<String> attentionVariety = Lists.newArrayList("1", "2", "3");
     // 关注栏目多个用逗号分隔
     private List<String> attentionColumn = Lists.newArrayList("1", "2", "3");
-    // 关注地区
-    private List<String> attentionArea = Lists.newArrayList("东莞");
+    // 关注地区城市
+    private List<String> attentionCity = Lists.newArrayList("深圳","东莞","广州");
+    // 关注地区省份
+    private List<String> attentionProvince = Lists.newArrayList("广东","江西","山东");;
 }

@@ -24,7 +24,7 @@ public class NotificationDetail {
 //    // 推送类型全部推送/指定用户号码/通过标签推送
 //    private Integer pushType = 1;
     // 行为特征
-    private BehaviorCharacteristics behaviorCharacteristics ;
+    private BehaviorCharacteristics behaviorCharacteristics = new BehaviorCharacteristics();
     // 消费特征
     private ConsumptionCharacteristics consumptionCharacteristics = new ConsumptionCharacteristics();
     // 兴趣偏好
@@ -41,10 +41,8 @@ public class NotificationDetail {
     private RegistryInformation registryInformation = new RegistryInformation();
 
     public static void main(String[] args) {
-        System.out.println("SF".equalsIgnoreCase("sf"));
         NotificationDetail notificationDetail = new NotificationDetail();
-        t(BehaviorCharacteristics.class);
-
+//        t(BehaviorCharacteristics.class);
         String string = JSON.toJSONString(notificationDetail);
         System.out.println(string);
 

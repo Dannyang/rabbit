@@ -14,86 +14,27 @@ import lombok.NoArgsConstructor;
 @ApiModel(description = "标签筛选集合")
 public class TagConditionRequestVo {
     // 行为特征
-    // 用户分类,多个用逗号分隔
-    private String userClassifying = "1,2,3";
-    // 参会品种，多个用逗号分隔
-    private String attendVariety = "1,2,3";
-    // 累计分享量
-    private Integer minAccumulatedShared = 10;
-    private Integer maxAccumulatedShared = 15;
-    // 参会总次数
-    private Integer minAttendTimes = 10;
-    private Integer maxAttendTimes = 15;
-
+    @ApiModelProperty(value = "行为特征", name = "registrySourceType")
+    private BehaviorCharacteristics behaviorCharacteristics = new BehaviorCharacteristics();
     // 消费特征
-    // 会员意向
-    @ApiModelProperty(value = "会员意向")
-    private Integer memberIntention;
-    // 消费总次数
-    @ApiModelProperty(value = "消费总次数下限", name = "minConsumptionTimes")
-    private Integer minConsumptionTimes;
-    @ApiModelProperty(value = "消费总次数上限", name = "maxConsumptionTimes")
-    private Integer maxConsumptionTimes;
-
-
+    @ApiModelProperty(value = "消费特征", name = "registrySourceType")
+    private ConsumptionCharacteristics consumptionCharacteristics = new ConsumptionCharacteristics();
     // 兴趣偏好
-    // 关注品种多个用逗号分隔
-    @ApiModelProperty(value = "关注品种", name = "attentionVariety")
-    private String attentionVariety;
-    // 关注栏目多个用逗号分隔
-    @ApiModelProperty(value = "关注栏目", name = "attentionColumn")
-    private String attentionColumn;
-    // 关注地区
-    @ApiModelProperty(value = "关注地区", name = "attentionArea")
-    private String attentionArea;
-
+    @ApiModelProperty(value = "兴趣偏好", name = "registrySourceType")
+    private InterestAndPreference interestAndPreference = new InterestAndPreference();
     // 心理特征
-    // 活动参与度
-    @ApiModelProperty(value = "活动参与度", name = "activityParticipation")
-    private Integer activityParticipation;
-
+    @ApiModelProperty(value = "心理特征", name = "registrySourceType")
+    private MentalFeature mentalFeature = new MentalFeature();
     // 基本信息
-    // 所在地区
-    @ApiModelProperty(value = "所在地区", name = "userLocation")
-    private String userLocation;
-    // 最后登录时间
-    @ApiModelProperty(value = "最后登录时间下限", name = "lastLoginTimeStart")
-    private Long lastLoginTimeStart;
-    @ApiModelProperty(value = "最后登录时间上限", name = "lastLoginTimeEnd")
-    private Long lastLoginTimeEnd;
-    // 用户类型
-    @ApiModelProperty(value = "用户类型", name = "userType")
-    private Integer userType;
-
-
+    @ApiModelProperty(value = "基本信息", name = "registrySourceType")
+    private BasicInformation basicInformation = new BasicInformation();
     // 权限信息
-    // 业务类型
-    @ApiModelProperty(value = "业务类型", name = "businessType")
-    private String businessType;
-    // 权限类型
-    @ApiModelProperty(value = "权限类型", name = "authorityType")
-    private Integer authorityType;
-    @ApiModelProperty(value = "权限状态", name = "authorityStatus")
-    private Integer authorityStatus;
-
-
-
+    @ApiModelProperty(value = "权限信息", name = "registrySourceType")
+    private AuthorityInformation authorityInformation = new AuthorityInformation();
     // 用户定制
-    // 定制品种
-    @ApiModelProperty(value = "定制品种", name = "customizationType")
-    private String customizationType;
-    // 定制栏目
-    @ApiModelProperty(value = "定制栏目", name = "customizationColumn")
-    private String customizationColumn ;
-
-
+    @ApiModelProperty(value = "用户定制", name = "registrySourceType")
+    private UserCustomization userCustomization = new UserCustomization();
     // 注册信息
-    // 注册来源类型多个用逗号分开
-    @ApiModelProperty(value = "注册来源类型", name = "registrySourceType")
-    private String registrySourceType ;
-    // 注册时间
-    @ApiModelProperty(value = "注册时间下限", name = "registryTimeStart")
-    private Long registryTimeStart ;
-    @ApiModelProperty(value = "注册时间上限", name = "registryTimeEnd")
-    private Long registryTimeEnd ;
+    @ApiModelProperty(value = "注册信息", name = "registrySourceType")
+    private RegistryInformation registryInformation = new RegistryInformation();
 }

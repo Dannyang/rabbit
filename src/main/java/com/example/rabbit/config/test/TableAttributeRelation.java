@@ -1,56 +1,25 @@
 package com.example.rabbit.config.test;
 
-import org.apache.commons.lang3.tuple.Pair;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class TableAttributeRelation {
     public static  ConcurrentHashMap<String, String> attributeColumnMap = new ConcurrentHashMap<>();
-    public static List<String> inQueryList = new ArrayList<>();
-    public static List<Pair<String, String>> betweenList= new ArrayList<>(0);
-    public static List<String> littleThanQueryList = new ArrayList<>();
-    public static List<String> lagerThanQueryList = new ArrayList<>();
+    public static ConcurrentHashMap<String, String> tagKeySqlMap = new ConcurrentHashMap<>();
+    public static List<String> betweenTag = new ArrayList<>();
     static {
-        inQueryList.add("userClassifying");
-        inQueryList.add("attendVariety");
-        inQueryList.add("memberIntention");
-        inQueryList.add("attentionVariety");
-        inQueryList.add("attentionColumn");
-        inQueryList.add("attentionArea");
-        inQueryList.add("userLocation");
-        inQueryList.add("userType");
-        inQueryList.add("businessType");
-        inQueryList.add("authorityType");
-        inQueryList.add("authorityStatus");
-        inQueryList.add("customizationType");
-        inQueryList.add("customizationColumn");
-        inQueryList.add("registrySourceType");
-        inQueryList.add("activityParticipation");
+        betweenTag.add("minAccumulatedShared");
+        betweenTag.add("maxAccumulatedShared");
+        betweenTag.add("minAttendTimes");
+        betweenTag.add("maxAttendTimes");
+        betweenTag.add("minConsumptionTimes");
+        betweenTag.add("maxConsumptionTimes");
+        betweenTag.add("lastLoginTimeStart");
+        betweenTag.add("lastLoginTimeEnd");
+        betweenTag.add("registryTimeStart");
+        betweenTag.add("registryTimeEnd");
     }
-    static {
-        betweenList.add(Pair.of("minAttendTimes","maxAttendTimes"));
-        betweenList.add(Pair.of("minAccumulatedShared","maxAccumulatedShared"));
-        betweenList.add(Pair.of("minConsumptionTimes","maxConsumptionTimes"));
-        betweenList.add(Pair.of("lastLoginTimeStart","lastLoginTimeEnd"));
-        betweenList.add(Pair.of("registryTimeStart","registryTimeEnd"));
-    }
-    static {
-        littleThanQueryList.add("maxAttendTimes");
-        littleThanQueryList.add("maxAccumulatedShared");
-        littleThanQueryList.add("maxConsumptionTimes");
-        littleThanQueryList.add("lastLoginTimeEnd");
-        littleThanQueryList.add("registryTimeEnd");
-    }
-    static {
-        lagerThanQueryList.add("minAccumulatedShared");
-        lagerThanQueryList.add("minAttendTimes");
-        lagerThanQueryList.add("minConsumptionTimes");
-        lagerThanQueryList.add("lastLoginTimeStart");
-        lagerThanQueryList.add("registryTimeStart");
-    }
-
 
     static {
         attributeColumnMap.put("userClassifying", "用户分类");
@@ -64,9 +33,11 @@ public class TableAttributeRelation {
         attributeColumnMap.put("maxConsumptionTimes", "累计消费次数");
         attributeColumnMap.put("attentionVariety", "关注品种");
         attributeColumnMap.put("attentionColumn", "关注栏目");
-        attributeColumnMap.put("attentionArea", "关注地区");
+        attributeColumnMap.put("attentionCity", "关注地区-城市");
+        attributeColumnMap.put("attentionProvince", "关注地区-城市");
         attributeColumnMap.put("activityParticipation", "活动参与度");
-        attributeColumnMap.put("userLocation", "所在地区");
+        attributeColumnMap.put("userCity", "所在地区-城市");
+        attributeColumnMap.put("userProvince", "所在地区-省份");
         attributeColumnMap.put("lastLoginTimeStart", "最后登录时间");
         attributeColumnMap.put("lastLoginTimeEnd", "最后登录时间");
         attributeColumnMap.put("userType", "用户类型");
