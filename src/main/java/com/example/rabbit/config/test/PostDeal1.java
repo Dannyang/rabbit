@@ -7,11 +7,6 @@ import java.util.List;
 public class PostDeal1 extends PostDeal {
     private static final String union = "UNION ALL ";
     private static final List<String> forIdTags = Arrays.asList("businessType", "customizationType", "customizationColumn");
-//    StringBuilder builder = new StringBuilder("SELECT" +
-//            "'tagKey' as tagKey," +
-//            "SUM(user_cnt) as count" +
-//            "from" +
-//            "ADS.BACKPUSH_APPUSER_LABEL_SUMMARY");
 
     public PostDeal1(StringBuilder stringBuilder) {
         super(stringBuilder);

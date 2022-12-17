@@ -21,8 +21,10 @@ public class Test {
 //        List<TagCountResultVo> count = test.getCount(new TagConditionRequestVo());
 //        System.out.println(Integer.MAX_VALUE);
 //        System.out.println(count.size());
-        String parse = new PreDeal(new PostDeal1(new StringBuilder())).parse(new TagConditionRequestVo());
-        System.out.println(parse);
+        String parse1 = new PreDeal(new PostDeal1(new StringBuilder())).parse(new TagConditionRequestVo());
+        System.out.println(parse1);
+        String parse2 = new PreDeal(new PostDeal2(new StringBuilder())).parse(new TagConditionRequestVo());
+        System.out.println(parse2);
 
     }
     public List<TagCountResultVo> getCount(TagConditionRequestVo tagConditionRequestVo) {

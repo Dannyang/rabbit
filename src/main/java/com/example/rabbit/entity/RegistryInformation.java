@@ -17,8 +17,8 @@ public class RegistryInformation {
     // 注册来源类型多个用逗号分开
     private List<String> registrySourceType = Lists.newArrayList("s","2");
     // 注册时间
-    private Long registryTimeStart = 1479454654561L;
+    private Long registryTimeStart ;
 //    private Long registryTimeStart;
-    private Long registryTimeEnd;
+    private Long registryTimeEnd = 18772378483L;
 //    private Long registryTimeEnd;
 }
