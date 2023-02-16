@@ -1,5 +1,6 @@
 package com.example.rabbit.service;
 
+import com.example.rabbit.aspect.Monitor;
 import com.example.rabbit.entity.ProductReq;
 import com.example.rabbit.entity.ProductRsp;
 import com.example.rabbit.mapper.ProductMapper;
@@ -13,6 +14,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -32,7 +34,7 @@ public class ProductService {
     public void batchInsert() {
         int i = 0;
         List<ProductReq> list = Lists.newArrayList();
-        while (i < 3*1000*1000) {
+        while (i < 3 * 1000 * 1000) {
             String uuId = UUID.randomUUID().toString();
             ProductReq productReq = new ProductReq();
             productReq.setLevel("2");
@@ -58,6 +60,13 @@ public class ProductService {
 
     public List<ProductRsp> productTree() {
         List<ProductReq> productMapperAll = productMapper.getAll();
+        List<List<ProductReq>> partition = Lists.partition(productMapperAll, 2);
+        Optional<List<ProductReq>> reduce =
+                partition.stream().filter(CollectionUtils::isNotEmpty).reduce((a, b) -> {
+                    a.retainAll(b);
+                    return a;
+                });
+        List<ProductReq> list = reduce.orElse(new ArrayList<>());
         List<ProductRsp> productRsps = productMapperAll.stream().map(req -> {
             ProductRsp productRsp = new ProductRsp();
             try {
@@ -124,6 +133,12 @@ public class ProductService {
                 getSubList(children, all);
             }
         });
+    }
+
+    @Monitor(tagKey = "haha")
+    public ProductReq getOne(String  id) {
+        return productMapper.getOne(id);
+
     }
 
 }

@@ -23,9 +23,6 @@ public class AlgorithmTest {
         algorithmTest.consume();
     }
 
-    public TestInterface getThreadPoolExecutor() {
-        return System.out::println;
-    }
 
     private void produce() {
         threadPoolExecutor.execute(() -> {

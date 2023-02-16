@@ -10,5 +10,9 @@ import java.util.List;
 public interface ProductMapper {
     List<ProductReq> getAll();
 
+    ProductReq getOne(String id);
+
     void batchInsert(@Param("productReqList") List<ProductReq> productReqList);
+
+    List<ProductReq> getOneTest(List<Long> id);
 }

@@ -13,9 +13,6 @@ import com.example.rabbit.entity.UserCustomization;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class PreDeal {
     private final PostDeal postDeal;
 
@@ -27,7 +24,7 @@ public class PreDeal {
         if (tagConditionRequestVo == null) {
             return StringUtils.EMPTY;
         }
-        postDeal.getSql().append("SELECT 'tagKey' as tagKey,SUM(user_cnt) as count from ADS" +
+        postDeal.getSqlBuilder().append("SELECT 'tagKey' as tagKey,SUM(user_cnt) as count from ADS" +
                 ".BACKPUSH_APPUSER_LABEL_SUMMARY");
         setBehaviorCharacteristics(tagConditionRequestVo.getBehaviorCharacteristics());
         setConsumptionCharacteristics(tagConditionRequestVo.getConsumptionCharacteristics());
@@ -37,7 +34,7 @@ public class PreDeal {
         setAuthorityInformation(tagConditionRequestVo.getAuthorityInformation());
         setUserCustomization(tagConditionRequestVo.getUserCustomization());
         setRegistryInformation(tagConditionRequestVo.getRegistryInformation());
-        return postDeal.getSql().toString();
+        return postDeal.getSqlBuilder().toString();
     }
 
 
@@ -46,12 +43,10 @@ public class PreDeal {
             return;
         }
         if (CollectionUtils.isNotEmpty(behaviorCharacteristics.getUserClassifying())) {
-            String listVal = getListVal(behaviorCharacteristics.getUserClassifying());
-            postDeal.postSet("userClassifying", "用户分类", listVal, null, null);
+            postDeal.postSet("userClassifying", "用户分类", behaviorCharacteristics.getUserClassifying(), null, null);
         }
         if (CollectionUtils.isNotEmpty(behaviorCharacteristics.getAttendVariety())) {
-            String listVal = getListVal(behaviorCharacteristics.getAttendVariety());
-            postDeal.postSet("attendVariety", "参会品种", listVal, null, null);
+            postDeal.postSet("attendVariety", "参会品种", behaviorCharacteristics.getAttendVariety(), null, null);
         }
         // 分享次数
         postDeal.postSet("minAccumulatedShared", "累计分享量", null, behaviorCharacteristics.getMinAccumulatedShared(),
@@ -67,8 +62,7 @@ public class PreDeal {
             return;
         }
         if (CollectionUtils.isNotEmpty(consumptionCharacteristics.getMemberIntention())) {
-            String listVal = getListVal(consumptionCharacteristics.getMemberIntention());
-            postDeal.postSet("memberIntention", "会员意向", listVal, null, null);
+            postDeal.postSet("memberIntention", "会员意向", consumptionCharacteristics.getMemberIntention(), null, null);
         }
         // 累计消费次数
         postDeal.postSet("minConsumptionTimes", "累计消费次数", null, consumptionCharacteristics.getMinConsumptionTimes(),
@@ -80,8 +74,7 @@ public class PreDeal {
             return;
         }
         if (CollectionUtils.isNotEmpty(mentalFeature.getActivityParticipation())) {
-            String listVal = getListVal(mentalFeature.getActivityParticipation());
-            postDeal.postSet("activityParticipation", "活动参与度", listVal, null, null);
+            postDeal.postSet("activityParticipation", "活动参与度", mentalFeature.getActivityParticipation(), null, null);
         }
     }
 
@@ -91,20 +84,16 @@ public class PreDeal {
             return;
         }
         if (CollectionUtils.isNotEmpty(interestAndPreference.getAttentionColumn())) {
-            String listVal = getListVal(interestAndPreference.getAttentionColumn());
-            postDeal.postSet("attentionColumn", "关注栏目", listVal, null, null);
+            postDeal.postSet("attentionColumn", "关注栏目", interestAndPreference.getAttentionColumn(), null, null);
         }
         if (CollectionUtils.isNotEmpty(interestAndPreference.getAttentionVariety())) {
-            String listVal = getListVal(interestAndPreference.getAttentionVariety());
-            postDeal.postSet("attentionVariety", "关注品种", listVal, null, null);
+            postDeal.postSet("attentionVariety", "关注品种", interestAndPreference.getAttentionVariety(), null, null);
         }
         if (CollectionUtils.isNotEmpty(interestAndPreference.getAttentionCity())) {
-            String listVal = getListVal(interestAndPreference.getAttentionCity());
-            postDeal.postSet("attentionCity", "关注地区", listVal, null, null);
+            postDeal.postSet("attentionCity", "关注地区", interestAndPreference.getAttentionCity(), null, null);
         }
         if (CollectionUtils.isNotEmpty(interestAndPreference.getAttentionProvince())) {
-            String listVal = getListVal(interestAndPreference.getAttentionProvince());
-            postDeal.postSet("attentionProvince", "关注地区", listVal, null, null);
+            postDeal.postSet("attentionProvince", "关注地区", interestAndPreference.getAttentionProvince(), null, null);
         }
     }
 
@@ -113,19 +102,16 @@ public class PreDeal {
             return;
         }
         if (CollectionUtils.isNotEmpty(basicInformation.getUserCity())) {
-            String listVal = getListVal(basicInformation.getUserCity());
-            postDeal.postSet("userCity", "所在地区", listVal, null, null);
+            postDeal.postSet("userCity", "所在地区", basicInformation.getUserCity(), null, null);
         }
         if (CollectionUtils.isNotEmpty(basicInformation.getUserType())) {
-            String listVal = getListVal(basicInformation.getUserType());
-            postDeal.postSet("userType", "用户类型", listVal, null, null);
+            postDeal.postSet("userType", "用户类型", basicInformation.getUserType(), null, null);
         }
         if (CollectionUtils.isNotEmpty(basicInformation.getUserProvince())) {
-            String listVal = getListVal(basicInformation.getUserProvince());
-            postDeal.postSet("userProvince", "所在地区", listVal, null, null);
+            postDeal.postSet("userProvince", "所在地区", basicInformation.getUserProvince(), null, null);
         }
         // 最后登录时间
-        postDeal.postSet("lastLoginTimeEnd", "最后登录时间", "", basicInformation.getLastLoginTimeStart(),
+        postDeal.postSet("lastLoginTimeEnd", "最后登录时间", null, basicInformation.getLastLoginTimeStart(),
                 basicInformation.getLastLoginTimeEnd());
 
     }
@@ -135,17 +121,14 @@ public class PreDeal {
             return;
         }
         if (CollectionUtils.isNotEmpty(authorityInformation.getAuthorityStatus())) {
-            String listVal = getListVal(authorityInformation.getAuthorityStatus());
-            postDeal.postSet("authorityStatus", "权限状态", listVal, null, null);
+            postDeal.postSet("authorityStatus", "权限状态", authorityInformation.getAuthorityStatus(), null, null);
         }
         if (CollectionUtils.isNotEmpty(authorityInformation.getAuthorityType())) {
-            String listVal = getListVal(authorityInformation.getAuthorityType());
-            postDeal.postSet("authorityType", "权限类型", listVal, null, null);
+            postDeal.postSet("authorityType", "权限类型", authorityInformation.getAuthorityType(), null, null);
 
         }
         if (CollectionUtils.isNotEmpty(authorityInformation.getBusinessType())) {
-            String listVal = getListVal(authorityInformation.getBusinessType());
-            postDeal.postSet("businessType", "业务类型", listVal, null, null);
+            postDeal.postSet("businessType", "业务类型", authorityInformation.getBusinessType(), null, null);
         }
     }
 
@@ -154,12 +137,10 @@ public class PreDeal {
             return;
         }
         if (CollectionUtils.isNotEmpty(userCustomization.getCustomizationColumn())) {
-            String listVal = getListVal(userCustomization.getCustomizationColumn());
-            postDeal.postSet("customizationColumn", "定制栏目", listVal, null, null);
+            postDeal.postSet("customizationColumn", "定制栏目", userCustomization.getCustomizationColumn(), null, null);
         }
         if (CollectionUtils.isNotEmpty(userCustomization.getCustomizationType())) {
-            String listVal = getListVal(userCustomization.getCustomizationType());
-            postDeal.postSet("customizationType", "定制品种", listVal, null, null);
+            postDeal.postSet("customizationType", "定制品种", userCustomization.getCustomizationType(), null, null);
         }
     }
 
@@ -168,8 +149,7 @@ public class PreDeal {
             return;
         }
         if (CollectionUtils.isNotEmpty(registryInformation.getRegistrySourceType())) {
-            String listVal = getListVal(registryInformation.getRegistrySourceType());
-            postDeal.postSet("registrySourceType", "注册来源类型", listVal, null, null);
+            postDeal.postSet("registrySourceType", "注册来源类型", registryInformation.getRegistrySourceType(), null, null);
         }
         // 注册时间
         postDeal.postSet("registryTimeStart", "注册时间", null, registryInformation.getRegistryTimeStart(),
@@ -178,7 +158,5 @@ public class PreDeal {
     }
 
 
-    private String getListVal(List<String> listVal) {
-        return "(".concat(listVal.stream().map(a -> "'".concat(a).concat("'")).collect(Collectors.joining(","))).concat(")");
-    }
+
 }

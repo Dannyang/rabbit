@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "../../../../../mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.rabbit.mapper.TaskMapper">
+
+
+    <select id="get" resultType="com.example.rabbit.entity.TaskCountDescDTO">
+        SELECT count(*) AS taskCount , '待我处理任务' AS taskCountDesc FROM center_task WHERE admin_id = #{condition.adminId}
+        AND task_status = 0 AND task_type IN (2,3,10,13,14,15,16)
+        UNION ALL
+        SELECT count(*)AS taskCount , '已处理任务' AS taskCountDesc FROM center_task WHERE admin_id = #{condition.adminId}
+        AND task_status = 1 AND task_type IN (2,3,10,13,14,15,16)
+        UNION ALL
+        SELECT count(*) AS taskCount , '我创建的任务' AS taskCountDesc FROM center_task WHERE create_id = #{condition.adminId}
+        AND task_type IN (2,3,10,13,14,15,16)
+        UNION ALL
+        <choose>
+            <when test="condition.adminFlag == 1">
+                SELECT
+                count(*) AS taskCount,
+                '我关注的任务' AS taskCountDesc
+                FROM
+                center_task
+                WHERE
+                admin_id IN
+                <foreach collection="condition.adminList" item="adminItem" open="(" separator="," close=")">
+                    #{adminItem}
+                </foreach>
+                AND task_type IN ( 2, 3, 10, 13, 14 )
+            </when>
+            <otherwise>
+                SELECT
+                count(*) AS taskCount,
+                '我关注的任务' AS taskCountDesc
+                FROM
+                center_task
+                WHERE
+                admin_id = #{condition.adminId}
+                AND task_type IN ( 15, 16 )
+            </otherwise>
+        </choose>
+    </select>
+</mapper>

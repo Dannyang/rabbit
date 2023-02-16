@@ -13,7 +13,11 @@
 
 
     <select id="getAll" resultMap="inviteMap">
-        select id,uuid,name,sort,parent_uuid,level from product
+        select id,uuid,name,sort,parent_uuid,level from product_copy1
+    </select>
+
+    <select id="getOne" resultMap="inviteMap">
+        select id,uuid,name,sort,parent_uuid,level from product_copy1 where id = #{id,jdbcType=VARCHAR}
     </select>
 
     <select id="batchInsert" parameterType="list">
@@ -22,5 +26,7 @@
             (#{item.uuid},#{item.name},#{item.sort},#{item.parentUuid},#{item.level}, UTC_TIMESTAMP())
         </foreach>
     </select>
-
+    <select id="getOneTest" resultType="com.example.rabbit.entity.ProductReq" parameterType="list">
+        select id,uuid,name,sort,parent_uuid,level from product_copy1 where id = #{id}
+    </select>
 </mapper>

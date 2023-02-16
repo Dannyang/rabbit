@@ -7,4 +7,6 @@ import org.apache.ibatis.cursor.Cursor;
 @Mapper
 public interface InviteMapper {
     Cursor<Invite> getAllInvites();
+
+
 }

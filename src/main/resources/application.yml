@@ -1,8 +1,8 @@
 logging:
   level:
-    root: info
+    root: debug
     com.example.rabbit.mapper: debug
-
+    com.example.rabbit.work.controller: debug
 
 spring:
   redis:

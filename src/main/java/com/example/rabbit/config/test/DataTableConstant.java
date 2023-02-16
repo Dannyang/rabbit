@@ -45,7 +45,10 @@ public class DataTableConstant {
 
 
 
-    public static final String inSqlForInfo = "SELECT SUM(user_cnt) FROM ADS.BACKPUSH_APPUSER_LABEL_SUMMARY WHERE label_type = '%s' " +
+    public static final String inSqlForInfo = "SELECT SUM(user_cnt) as countOfContainedUser , %s as tagKey, %s as selectedContent " +
+            "FROM ADS" +
+            ".BACKPUSH_APPUSER_LABEL_SUMMARY " +
+            "WHERE label_type = '%s' " +
             "AND " +
             "label_info IN %s";
     public static final String inSqlForId = "SELECT SUM(user_cnt) FROM ADS.BACKPUSH_APPUSER_LABEL_SUMMARY WHERE " +

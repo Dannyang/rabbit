@@ -12,21 +12,55 @@ import com.example.rabbit.entity.UserCustomization;
 import com.google.common.collect.Lists;
 import org.apache.commons.collections.CollectionUtils;
 
+import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Test {
+    private static final String summarySql = "SELECT\n" +
+            "\t'-1' as tagKey,\n" +
+            "\t-1 as countOfContainedUser,\n" +
+            "\t'content' as selectedContent \n" +
+            "from\n" +
+            "\tADS.BACKPUSH_APPUSER_LABEL_SUMMARY WHERE  1= 1 LIMIT 1";
+
     public static void main(String[] args) {
+//        Date date = new Date(1671679685472L);
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//        System.out.println(simpleDateFormat.format(date));
 //        Test test = new Test();
 //        List<TagCountResultVo> count = test.getCount(new TagConditionRequestVo());
 //        System.out.println(Integer.MAX_VALUE);
 //        System.out.println(count.size());
-        String parse1 = new PreDeal(new PostDeal1(new StringBuilder())).parse(new TagConditionRequestVo());
-        System.out.println(parse1);
-        String parse2 = new PreDeal(new PostDeal2(new StringBuilder())).parse(new TagConditionRequestVo());
-        System.out.println(parse2);
+//        String parse1 = new PreDeal(new PostDeal1(new StringBuilder(summarySql))).parse(new TagConditionRequestVo());
+//        System.out.println(parse1);
+//        String parse2 = new PreDeal(new PostDeal2(new StringBuilder())).parse(new TagConditionRequestVo());
+//        System.out.println(parse2);
 
+
+//        List<List<BehaviorCharacteristics>> alist = new ArrayList<>();
+//        alist.add(l1);
+//        alist.add(l2);
+//        alist.add(l3);
+//        List<BehaviorCharacteristics> list = alist.stream().reduce((a, b) -> {
+//            a.retainAll(b);
+//            return a;
+//        }).orElse(new ArrayList<>());
+//        System.out.println(list.size());
+        System.out.println(StandardCharsets.UTF_8.name());
     }
+
+    public static <T>void get(Function<String, T> function, String key) {
+        HashMap<T, String> map = new HashMap<>();
+        String s = map.get(function.apply(key));
+        System.out.println(s);
+    }
+
     public List<TagCountResultVo> getCount(TagConditionRequestVo tagConditionRequestVo) {
         List<TagCountResultVo> tagCountResultVos = Lists.newArrayList();
         if (tagConditionRequestVo == null) {

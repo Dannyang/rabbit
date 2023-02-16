@@ -1,5 +1,7 @@
 package com.example.rabbit.config.test;
 
+import java.util.List;
+
 public class PostDeal2 extends PostDeal {
     String inQuerySql = "SELECT user_id, phone_number FROM %s WHERE %s IN %s";
     String betweenQuerySql = "SELECT user_id, phone_number FROM %s WHERE %s BETWEEN %s AND %s";
@@ -14,12 +16,12 @@ public class PostDeal2 extends PostDeal {
 
 
     @Override
-    <T> void postSet(String tagKey, String tagName, String listVal, T leftVal, T rightVal) {
+    <T> void postSet(String tagKey, String tagName, List<T> listVal, T leftVal, T rightVal) {
         if (TableAttributeRelation.betweenTag.contains(tagKey)) {
-            this.getSql().append(union).append(getRangeCountSql(leftVal, rightVal, tagKey));
+            this.getSqlBuilder().append(union).append(getRangeCountSql(leftVal, rightVal, tagKey));
             return;
         }
-        this.getSql().append(union).append(getInQuerySql(listVal, tagKey));
+        this.getSqlBuilder().append(union).append(getInQuerySql(listVal, tagKey));
 
     }
 
@@ -56,10 +58,11 @@ public class PostDeal2 extends PostDeal {
                 , end);
     }
 
-    private String getInQuerySql(String val, String fieldName) {
+    private <T>String getInQuerySql(List<T> listVal, String fieldName) {
+        String strVal = getListVal(listVal);
         return String.format(inQuerySql,
                 TableAttributeRelation.tagKeyTableMap.get(fieldName).getLeft(),
-                TableAttributeRelation.tagKeyTableMap.get(fieldName).getRight(), val);
+                TableAttributeRelation.tagKeyTableMap.get(fieldName).getRight(), strVal);
 
     }
 

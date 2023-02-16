@@ -30,4 +30,10 @@ public class RController {
     }
 
 
+    @RequestMapping(value = "/red3", method = RequestMethod.DELETE)
+    public Integer get(@RequestParam("path") String path, @RequestParam("taskId")Long id){
+        return 1;
+    }
+
+
 }

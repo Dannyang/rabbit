@@ -15,13 +15,14 @@ import java.util.List;
 @Builder
 public class BehaviorCharacteristics {
     // 用户分类,多个用逗号分隔
-    private List<String> userClassifying = Lists.newArrayList("1","2","3");
+    private List<String> userClassifying = Lists.newArrayList("1", "2", "3");
     // 参会品种，多个用逗号分隔
-    private List<String> attendVariety = Lists.newArrayList("1","2","3");
+    private List<String> attendVariety = Lists.newArrayList("1", "2", "3");
     // 累计分享量
     private Integer minAccumulatedShared = 10;
     private Integer maxAccumulatedShared = 15;
     // 参会总次数
     private Integer minAttendTimes = 10;
     private Integer maxAttendTimes = 15;
+
 }

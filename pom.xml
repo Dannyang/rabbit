@@ -24,6 +24,30 @@
             <artifactId>clickhouse-jdbc</artifactId>
             <version>0.3.2</version>
         </dependency>
+        <dependency>
+            <groupId>mysteel.member.api</groupId>
+            <artifactId>mysteel-member-api</artifactId>
+            <version>2.3.6-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.mysteel.base</groupId>
+                    <artifactId>mysteel-base-config</artifactId>
+                </exclusion></exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+            <version>2.5.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.1-jre</version>
+        </dependency>
 
         <dependency>
             <groupId>com.mysteel.article</groupId>
@@ -106,6 +130,12 @@
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

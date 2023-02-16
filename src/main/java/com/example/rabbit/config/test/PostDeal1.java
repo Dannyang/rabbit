@@ -14,16 +14,16 @@ public class PostDeal1 extends PostDeal {
 
 
     @Override
-    <T> void postSet(String tagKey, String tagName, String listVal, T leftVal, T rightVal) {
+    <T> void postSet(String tagKey, String tagName, List<T> listVal, T leftVal, T rightVal) {
         if (TableAttributeRelation.betweenTag.contains(tagKey)) {
-            this.getSql().append(union).append(getRangeCountSql(leftVal, rightVal, tagKey));
+            this.getSqlBuilder().append(union).append(getRangeCountSql(leftVal, rightVal, tagKey));
             return;
         }
         if (forIdTags.contains(tagKey)) {
-            this.getSql().append(union).append(getCountForId(listVal, tagKey));
+            this.getSqlBuilder().append(union).append(getCountForId(listVal, tagKey));
             return;
         }
-        this.getSql().append(union).append(getCountForInfo(listVal, tagKey));
+        this.getSqlBuilder().append(union).append(getCountForInfo(listVal, tagKey));
 
     }
 
@@ -56,13 +56,16 @@ public class PostDeal1 extends PostDeal {
                 , end);
     }
 
-    private String getCountForInfo(String val, String fieldName) {
-        return String.format(DataTableConstant.inSqlForInfo,
-                TableAttributeRelation.attributeColumnMap.get(fieldName), val);
+    private <T>String getCountForInfo(List<T> listVal, String tagKey) {
+        //todo listVal值转化
+        String content = "";
+        String strVal = getListVal(listVal);
+        return String.format(DataTableConstant.inSqlForInfo, tagKey, content,
+                TableAttributeRelation.attributeColumnMap.get(tagKey), strVal);
 
     }
 
-    private String getCountForId(String val, String fieldName) {
+    private <T>String getCountForId(List<T> val, String fieldName) {
         return String.format(DataTableConstant.inSqlForId, TableAttributeRelation.attributeColumnMap.get(fieldName), val);
 
     }
